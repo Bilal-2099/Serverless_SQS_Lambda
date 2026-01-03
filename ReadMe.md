@@ -1,82 +1,36 @@
-# Serverless SQS & Lambda Pipeline
+# Serverless SQS Lambda
 
-![Serverless](https://img.shields.io/badge/Serverless-AWS%20Lambda-blue)
-![License](https://img.shields.io/badge/License‑MIT‑green)
-![GitHub Repo](https://img.shields.io/badge/GitHub‑Bilal‑2099‑orange)
+## Overview
 
-## 🚀 Project Overview  
-This project builds a serverless pipeline using **AWS Lambda** triggered by messages from an **Amazon SQS** queue. It demonstrates how you can architect event‑driven and scalable workflows using SQS + Lambda.
+Basic serverless project using **AWS SQS** and **AWS Lambda**.  
+An SQS message triggers a Lambda function which processes the data.
 
----
-
-## 📊 Architecture / Flow  
+## Files
 ```
-[Producer or Event Source] → [SQS Queue] → [Lambda Function] → [Processing / Storage]
-```
-> Queue receives messages, Lambda subscribes and processes them in a serverless way.
-
----
-
-## 🧰 Key Features  
-- Uses an SQS queue to decouple message ingestion from processing.  
-- Lambda function triggered via the queue, scaling automatically with load.  
-- Serverless architecture (no servers to manage) for high scalability and reliability.  
-- Demonstrates how to configure AWS resources with minimal infrastructure code.
-
----
-
-## ⚡ Quick Start
-
-### 1️⃣ Clone the repo  
-```bash
-git clone https://github.com/Bilal‑2099/Serverless_SQS_Lambda.git
-cd Serverless_SQS_Lambda
+├── README.md
+├── lambda_code.py
+└── employee3.csv
 ```
 
-### 2️⃣ Configure AWS credentials  
-Ensure you have AWS CLI installed and configured with a role that has Lambda & SQS permissions.
+- `lambda_code.py` – Lambda function code triggered by SQS  
+- `employee3.csv` – Sample input data  
 
-### 3️⃣ Deploy the stack  
-Use your preferred deployment method (CloudFormation, Serverless Framework, or AWS SAM).  
-If using Serverless Framework, make sure your `serverless.yml` includes the SQS event trigger. For example:
+## Services Used
+- AWS Lambda  
+- Amazon SQS  
+- Amazon S3 (if used inside Lambda)  
 
-```yaml
-functions:
-  myLambda:
-    handler: handler.process
-    events:
-      - sqs:
-          arn: arn:aws:sqs:region:account-id:queue-name
-```
+## How It Works
+1. A message is sent to an SQS queue  
+2. SQS triggers the Lambda function  
+3. Lambda processes the message and performs required logic  
 
-### 4️⃣ Test the pipeline  
-- Send a message to the SQS queue.  
-- Verify the Lambda function triggers and processes the message.  
-- Check logs (CloudWatch) or storage output to confirm the result.
+## Requirements
+- Python 3.x  
+- boto3  
+- AWS account with SQS and Lambda configured  
 
----
-
-## 🔍 Why This Project Matters  
-- Event‑driven architectures are essential for building scalable microservices.  
-- Using SQS + Lambda lets you build loosely‑coupled and cost‑efficient workflows.  
-- This is a practical, portfolio‑ready example showing you can deploy real cloud event pipelines.
-
----
-
-## 👤 Author  
-**Bilal Raza** — Python Developer & Data Engineering Student at S.M.I.T under Sir Qasim Hassan  
-GitHub: [Bilal‑2099](https://github.com/Bilal‑2099)
-
----
-
-## 📌 Possible Improvements  
-- Add error handling and a *dead‑letter queue* (DLQ) for failed messages.  
-- Use batch processing of messages for higher throughput.  
-- Monitor with alerts (CloudWatch Alarms, SNS notifications).  
-- Extend with other services (e.g., DynamoDB, S3) for stored results or further processing.
-
----
-
-### 📄 License  
-MIT License
+## Notes
+- Commands and infrastructure setup are assumed to be handled separately  
+- This project demonstrates an event-driven serverless workflow  
 
